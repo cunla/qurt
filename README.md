@@ -25,16 +25,21 @@ You can also deploy the WAR on your own web-container.
 You can either use the AngularJS client or the REST API, using basic authentication user:user and password:qurt123 as default
 ```GET http://{server:port}/report/quarterReport/{year}/{quarter}```
 Generates quarterly report for a specific quarter
+
 ```GET http://{server:port}/report/quarterReportCsv/{year}/{quarter}```
 Generates quarterly report for a specific quarter as CSV file
+
 ```GET http://{server:port}/app/rest/dbdump```
 List all listings in the embedded database
+
 ```GET http://{server:port}/systems```
 List all configured RecoverPoint systems in QURT
+
 ```GET http://{server:port}/app/rest/testSystem/{id}```
 Test connection to a specific configured RecoverPoint system - Send HTTP OK (200) if successful or exception if failed
+
 ```POST http://{server:port}/app/rest/addSystem```
-Add new system using the JSON structure for SystemSettings class. Results with HTTP CREATED (201) if successful or exception if failed.
+Add new system using the JSON structure for SystemSettings class. Results with HTTP CREATED (201) if successful or exception if failed
 
 
 #### Future
