@@ -1,10 +1,10 @@
 QURT
 ======================
-Service Provider wishes to provide a quarterly report of replicated Virtual Machines to EMC, including values per month for the quarter, based on the (averaged) total number of VMs replicated per country & per type (local, remote) per month. 
+Service Provider wishes to view a quarterly report of replicated Virtual Machines, including values per month for the quarter, based on the (averaged) total number of VMs replicated per country & per type (local, remote) per month. 
 
  - The report may also include source VMs. 
  - The monthly value is the average of weekly report captured each Friday at noon. 
- - For tax purposes, the report should indicate for which country / region the invoice should be prepared. 
+ - The report should indicate for which country / region the invoice should be prepared. 
 
 
 
