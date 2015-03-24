@@ -1,6 +1,6 @@
 QURT
 ======================
-Service Provider wishes to view a quarterly report of replicated Virtual Machines, including values per month for the quarter, based on the (averaged) total number of VMs replicated per country & per type (local, remote) per month. 
+Customers wish to view a quarterly report of replicated Virtual Machines, including values per month for the quarter, based on the (averaged) total number of VMs replicated per country & per type (local, remote) per month. 
 
  - The report may also include source VMs. 
  - The monthly value is the average of weekly report captured each Friday at noon. 
