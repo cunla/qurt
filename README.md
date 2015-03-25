@@ -4,8 +4,8 @@ Quarterly Utility Reports Tool (QURT)
 #User Guide
 
 ###INTRODUCTION
-The Quarterly Utility Reports Tool (QURT) is an add-on utility for EMC’s RecoverPoint for VMs product, that is available as open source software. 
-QURT provides an easy way to monitor the usage of one or more RecoverPoint for VM systems. It is intended for Service Providers who wish to provide a quarterly report of replicated Virtual Machines to EMC.
+The Quarterly Utility Reports Tool (QURT) is an add-on utility for EMC’s RecoverPoint for VMs (RP4VM) product, that is available as open source software.
+QURT provides an easy way to monitor the usage of one or more RecoverPoint for VM systems. It is intended for RP4VM users who wish to generate a quarterly report of replicated Virtual Machines to EMC.
 
 ###OVERVIEW
 The QURT quarterly reports include values per month for the quarter, based on the total average number of VMs replicated per month.  
@@ -17,7 +17,7 @@ The QURT quarterly reports include values per month for the quarter, based on th
 
 QURT is deployed as a standalone jar running as a windows service. A standalone web-container is periodically collecting VM data from RecoverPoint systems and is exposing REST services and AngularJS client.
 
- * A scheduled task samples all pre-configured RecoverPoint clusters periodically for virtual machine data and determines their role (Source/Local Replication/Remote Replication)
+ * A scheduled task samples all pre-configured RP4VM clusters periodically VMs data and determines their role (Source/Local Replication/Remote Replication)
  * Using the API one can generate a quarterly usage report or access the entire database.
  * The AngularJS client provides a configuration view and a reports view
 
@@ -76,8 +76,11 @@ Create a fork of the project into your own repository. Make all your necessary c
 ###LICENSING
 The MIT License (MIT)
 Copyright (c) 2015, Daniel Moran
+
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ###SUPPORT
