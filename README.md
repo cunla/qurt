@@ -36,7 +36,7 @@ QURT is deployed as a standalone jar running as a windows service. A standalone 
 
 ####INSTALLATION – WINDOWS
 It is recommended to configure QURT to run as a Windows Service as follows:
-`sc create <new_service_name> binPath= "<path_to_the_executable>"`
+`sc create qurt_service_name binPath="java -jar qurt.war"`
 
 ##USER OPERATIONS
 To access QURT either AngularJS client or the REST API can be used
@@ -45,6 +45,7 @@ The QURT Web client can be accessed in: http://<hostname>/index.html:8080  (8080
 Basic user/password authentication is required. The defaults are:
  - User: user
  - Password:qurt123 
+
 The password can be changed using the by:
  - Changing WebSecurityConfig class
  - Write the password encoded in base64 in file curtpassword 
