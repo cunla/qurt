@@ -4,21 +4,21 @@ Quarterly Utility Reports Tool (QURT)
 #User Guide
 
 ###INTRODUCTION
-The Quarterly Utility Reports Tool (QURT) is an add-on utility for EMC’s RecoverPoint for VMs (RP4VM) product, that is available as open source software.
-QURT provides an easy way to monitor the usage of one or more RecoverPoint for VM systems. It is intended for RP4VM users who wish to generate a quarterly report of replicated Virtual Machines to EMC.
+The Quarterly Utility Reports Tool (QURT) is an add-on utility for EMC’s RecoverPoint for VMs product, that is available as open source software.
+QURT provides an easy way to monitor the usage of one or more RecoverPoint for VM systems. It is intended for users who wish to generate a quarterly report of replicated Virtual Machines.
 
 ###OVERVIEW
-The QURT quarterly reports include values per month for the quarter, based on the total average number of VMs replicated per month.  
+The QURT quarterly reports displays average number of VMs per month for the quarter.
 
-* The report includes both source and replica VMs.
-* The monthly value is based the average of weekly sample values captured each Friday at noon.
-* The report also indicates the country / region for which the invoice should be prepared.
+* The report includes both source and replica VMs
+* The monthly value is based the average of weekly sample values captured each Friday at noon
+* The report also indicates the country / region for which the invoice should be prepared
  
 
-QURT is deployed as a standalone jar running as a windows service. A standalone web-container is periodically collecting VM data from RecoverPoint systems and is exposing REST services and AngularJS client.
+QURT is deployed as a standalone jar running as a windows service. A standalone web-container periodically collects VM data from RecoverPoint for VMs systems and exposes REST services and an AngularJS client.
 
- * A scheduled task samples all pre-configured RP4VM clusters periodically VMs data and determines their role (Source/Local Replication/Remote Replication)
- * Using the API one can generate a quarterly usage report or access the entire database.
+ * A scheduled task samples all pre-configured systems periodically for their VMs data based on their role (Source/Local Replication/Remote Replication)
+ * Using the API one can generate a quarterly usage report or access the entire database
  * The AngularJS client provides a configuration view and a reports view
 
 ###INSTALLATION
@@ -46,7 +46,7 @@ Basic user/password authentication is required. The defaults are:
  - User: user
  - Password:qurt123 
 
-The password can be changed using the by:
+The password can be changed by:
  - Changing WebSecurityConfig class
  - Write the password encoded in base64 in file curtpassword 
 
