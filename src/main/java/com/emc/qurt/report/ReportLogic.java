@@ -59,7 +59,7 @@ public class ReportLogic {
         while (fromDate.getDayOfWeek() < DateTimeConstants.TUESDAY) {
             fromDate.plusDays(1);
         }
-        DateTime toDate = new DateTime(fromDate).plusMonths(3);
+        DateTime toDate = new DateTime(fromDate).plusMonths(3).minusDays(1);
         List<Long> clusters = systemsRepo.clusterIds();
 
         List<Sample> samples = dataRepo.samplesInPeriod(fromDate, toDate);
