@@ -51,7 +51,7 @@ public interface VmDataRepository extends JpaRepository<VirtualMachineData, Long
                    ")" +
                    "from VirtualMachineData vm " +
                    "where vm.sampleTime >= ?1 and vm.sampleTime <= ?2 " +
-                   "group by vm.sampleTime, vm.clusterId, vm.clusterCountry, vm.role " +
+                   "group by vm.sampleTime, vm.clusterId, vm.clusterCountry " +
                    "order by vm.sampleTime, vm.clusterId, vm.clusterCountry, vm.role")
     List<Sample> samplesInPeriod(DateTime fromDate, DateTime toDate);
 
