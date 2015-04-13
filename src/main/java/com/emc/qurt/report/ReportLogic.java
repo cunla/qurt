@@ -2,6 +2,7 @@ package com.emc.qurt.report;
 
 import com.emc.qurt.domain.ClusterSettings;
 import com.emc.qurt.domain.ReportLine;
+import com.emc.qurt.domain.ReportLinePerCluster;
 import com.emc.qurt.repository.SystemConnectionInfoRepository;
 import com.emc.qurt.repository.VmDataRepository;
 import com.emc.qurt.web.rest.HttpTools;
@@ -88,18 +89,19 @@ public class ReportLogic {
 
     private Report generateReport(Collection<PeriodClusterLine> periods, List<String> reportErrors) {
         Map<String, Integer> numberOfSamples = new HashMap<>();
-        Map<String, ReportLine> reportLines = new HashMap<>();
+        Map<String, ReportLinePerCluster> reportLinesPerCluster = new HashMap<>();
 
         for (PeriodClusterLine sample : periods) {
             String country = sample.getCountry();
+            long clusterId = sample.getPeriodCluster().clusterId;
             int year = sample.getPeriodCluster().getYear();
             int month = sample.getPeriodCluster().getMonth();
-            String key = String.format("%d/%d/%s", year, month, country);
-            ReportLine reportLine = reportLines.get(key);
+            String key = String.format("%d/%d/%d", year, month, clusterId);
+            ReportLinePerCluster reportLine = reportLinesPerCluster.get(key);
             if (null == reportLine) {
-                reportLine = new ReportLine(year, month, country, sample.getStateSource(), sample.getStateLocal(),
-                        sample.getStateRemote());
-                reportLines.put(key, reportLine);
+                reportLine = new ReportLinePerCluster(country, year, month, clusterId, sample.getStateSource(),
+                        sample.getStateLocal(), sample.getStateRemote());
+                reportLinesPerCluster.put(key, reportLine);
                 numberOfSamples.put(key, 1);
             } else {
                 int sampleNumber = numberOfSamples.get(key) + 1;
@@ -109,8 +111,25 @@ public class ReportLogic {
             }
         }
 
+        //Flatten clusters
+        Map<String, ReportLine> sumClusters = new HashMap<>();
+        for (ReportLinePerCluster line : reportLinesPerCluster.values()) {
+            String country = line.getCountry();
+            int year = line.getYear();
+            int month = line.getMonth();
+            String key = String.format("%d/%d/%s", year, month, country);
+            ReportLine reportLine = sumClusters.get(key);
+            if (null == reportLine) {
+                reportLine = new ReportLine(year, month, country, line.getStateSource(), line.getStateLocal(),
+                        line.getStateRemote());
+                sumClusters.put(key, reportLine);
+            } else {
+                reportLine.addCluster(line);
+            }
+        }
 
-        List<ReportLine> lines = new LinkedList<>(reportLines.values());
+
+        List<ReportLine> lines = new LinkedList<>(sumClusters.values());
         Report report = new Report(lines, reportErrors);
         return report;
     }

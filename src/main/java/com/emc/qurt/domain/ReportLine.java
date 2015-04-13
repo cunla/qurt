@@ -109,4 +109,11 @@ public class ReportLine {
         this.stateLocal = (this.stateLocal * (sampleNumber - 1) + stateLocal) / sampleNumber;
         this.stateRemote = (this.stateRemote * (sampleNumber - 1) + stateRemote) / sampleNumber;
     }
+
+    public void addCluster(ReportLinePerCluster line) {
+        this.stateLocal += line.getStateLocal();
+        this.stateRemote += line.getStateRemote();
+        this.stateSource += line.getStateSource();
+
+    }
 }
