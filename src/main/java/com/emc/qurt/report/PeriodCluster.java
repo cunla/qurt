@@ -21,7 +21,7 @@ class PeriodCluster {
     }
 
     public PeriodCluster(DateTime sample, long clusterId) {
-        this.sampleDate=new LocalDate(sample);
+        this.sampleDate = new LocalDate(sample);
         fromDate = new LocalDate(sample);
         while (DateTimeConstants.TUESDAY != fromDate.getDayOfWeek() &&
                 fromDate.getMonthOfYear() == sample.getMonthOfYear()) {
@@ -29,7 +29,7 @@ class PeriodCluster {
         }
         toDate = new LocalDate(sample);
         while (DateTimeConstants.MONDAY != toDate.getDayOfWeek() &&
-                toDate.getMonthOfYear() == sample.getMonthOfYear()) {
+                toDate.plusDays(1).getMonthOfYear() == sample.getMonthOfYear()) {
             toDate = toDate.plusDays(1);
         }
         this.clusterId = clusterId;
@@ -61,7 +61,6 @@ class PeriodCluster {
         if (o == null || getClass() != o.getClass()) return false;
 
         PeriodCluster that = (PeriodCluster) o;
-
         if (clusterId != that.clusterId) return false;
         if (fromDate != null ? !fromDate.equals(that.fromDate) : that.fromDate != null) return false;
         if (toDate != null ? !toDate.equals(that.toDate) : that.toDate != null) return false;
@@ -72,8 +71,8 @@ class PeriodCluster {
     @Override
     public int hashCode() {
         int result = fromDate != null ? fromDate.hashCode() : 0;
-        result = 31 * result + (toDate != null ? toDate.hashCode() : 0);
-        result = 31 * result + (int) (clusterId ^ (clusterId >>> 32));
+        result = 71 * result + (toDate != null ? toDate.hashCode() : 0);
+        result = 13 * result + (int) (clusterId ^ (clusterId >>> 32));
         return result;
     }
 
@@ -84,6 +83,11 @@ class PeriodCluster {
                 ", toDate=" + toDate +
                 ", clusterId=" + clusterId +
                 '}';
+    }
+
+    public boolean containDate(DateTime sampleDate) {
+        return toDate.plusDays(1).toDateTimeAtStartOfDay().isAfter(sampleDate) ||
+                fromDate.toDateTimeAtStartOfDay().isBefore(sampleDate);
     }
 }
 

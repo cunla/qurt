@@ -140,11 +140,16 @@ public class ReportLogic {
         PeriodCluster periodCluster = null;
         for (Sample sample : samples) {
             if (null == periodCluster || periodCluster.clusterId != sample.getClusterId() ||
-                    periodCluster.toDate.toDateTimeAtStartOfDay().isBefore(sample.getSampleDate()) ||
-                    periodCluster.fromDate.toDateTimeAtStartOfDay().isAfter(sample.getSampleDate())) {
+                    !periodCluster.containDate(sample.getSampleDate())
+                   ) {
                 periodCluster = new PeriodCluster(sample.getSampleDate(), sample.getClusterId());
             }
+            Boolean res = periods.get(periodCluster);
+            if(null==res){
+                log.warn("Can't find period for cluster "+periodCluster.toString());
+            }
             periods.put(periodCluster, true);
+
         }
         for (Map.Entry<PeriodCluster, Boolean> periodSampled : periods.entrySet()) {
             if (!periodSampled.getValue()) {
@@ -163,11 +168,13 @@ public class ReportLogic {
         LocalDate tmp = new LocalDate(fromDate);
         while (toDate.isAfter(tmp)) {
             LocalDate fDate = tmp;
-            while (DateTimeConstants.TUESDAY != fDate.getDayOfWeek()) {
+            while (DateTimeConstants.TUESDAY != fDate.getDayOfWeek()
+                    && fDate.getMonthOfYear()==tmp.getMonthOfYear()) {
                 fDate = fDate.minusDays(1);
             }
             LocalDate tDate = tmp;
-            while (DateTimeConstants.MONDAY != tDate.getDayOfWeek()) {
+            while (DateTimeConstants.MONDAY != tDate.getDayOfWeek()
+                    && tDate.getMonthOfYear() == tmp.getMonthOfYear()) {
                 tDate = tDate.plusDays(1);
             }
             tmp = tDate.plusDays(1);
