@@ -9,6 +9,7 @@ import org.joda.time.LocalDate;
  * Created by morand3 on 3/2/2015.
  */
 class PeriodCluster {
+    public LocalDate sampleDate;
     public LocalDate fromDate;
     public LocalDate toDate;
     public long clusterId;
@@ -20,12 +21,15 @@ class PeriodCluster {
     }
 
     public PeriodCluster(DateTime sample, long clusterId) {
+        this.sampleDate=new LocalDate(sample);
         fromDate = new LocalDate(sample);
-        while (DateTimeConstants.TUESDAY != fromDate.getDayOfWeek()) {
+        while (DateTimeConstants.TUESDAY != fromDate.getDayOfWeek() &&
+                fromDate.getMonthOfYear() == sample.getMonthOfYear()) {
             fromDate = fromDate.minusDays(1);
         }
         toDate = new LocalDate(sample);
-        while (DateTimeConstants.MONDAY != toDate.getDayOfWeek()) {
+        while (DateTimeConstants.MONDAY != toDate.getDayOfWeek() &&
+                toDate.getMonthOfYear() == sample.getMonthOfYear()) {
             toDate = toDate.plusDays(1);
         }
         this.clusterId = clusterId;
@@ -36,17 +40,19 @@ class PeriodCluster {
             throw new CurtException("Period is not well defined");
         }
         LocalDate tmp = new LocalDate(fromDate);
-        while (DateTimeConstants.FRIDAY != tmp.getDayOfWeek() && tmp.isBefore(toDate)) {
+        while (DateTimeConstants.FRIDAY != tmp.getDayOfWeek() && tmp.isBefore(toDate) &&
+                tmp.getMonthOfYear() == fromDate.getMonthOfYear()) {
             tmp = tmp.plusDays(1);
         }
         return tmp;
     }
 
     public int getMonth() {
-        return getFridayInPeriod().getMonthOfYear();
+        return sampleDate.getMonthOfYear();
     }
+
     public int getYear() {
-        return getFridayInPeriod().getYear();
+        return sampleDate.getYear();
     }
 
     @Override
