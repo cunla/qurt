@@ -66,8 +66,8 @@ public class ReportLine {
         return year;
     }
 
-    public int getMonth() {
-        return month;
+    public String getMonth() {
+        return String.format("%02d",month);
     }
 
     public int getStateRemote() {
