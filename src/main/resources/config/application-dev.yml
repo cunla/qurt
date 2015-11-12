@@ -6,16 +6,18 @@ spring:
         active: dev
 
     datasource:
-        dataSourceClassName: org.h2.jdbcx.JdbcDataSource
-        url: jdbc:h2:~/test2.h2.db;DB_CLOSE_DELAY=-1
+        dataSourceClassName: com.mysql.jdbc.jdbc2.optional.MysqlDataSource
+        url:  jdbc:mysql://localhost:3306/qurt
         databaseName:
         serverName:
-        username:
-        password:
+        username: qurt
+        password: qurt
+        cachePrepStmts: true
+        useServerPrepStmts: true
 
     jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
-        database: H2
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: MYSQL
         openInView: false
         show_sql: true
         generate-ddl: true

@@ -63,6 +63,7 @@ The following methods are supported in the QURT RESP API
  - `GET http://{server:port}/report/quarterReport/{year}/{quarter}` – Generates quarterly report for a specific quarter
  - `GET http://{server:port}/report/quarterReportCsv/{year}/{quarter}` – Generates quarterly report for a specific quarter as CSV file
  - `GET http://{server:port}/app/rest/dbdump` – List all listings in the embedded database
+  - `GET http://{server:port}/app/rest/dbdumpCsv` – Download all listings in the embedded database in CSV format
  - `GET http://{server:port}/systems` - List all configured RecoverPoint systems in QURT
  - ```GET http://{server:port}/app/rest/testSystem/{id}``` – Test connection to a specific configured RecoverPoint system - Sends HTTP OK (200) if successful or exception if failed
  - `POST http://{server:port}/app/rest/addSystem` – Add new system using the JSON structure for SystemSettings class. Results with HTTP CREATED (201) if successful or exception if failed

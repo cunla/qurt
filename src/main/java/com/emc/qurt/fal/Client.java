@@ -4,7 +4,7 @@ import com.emc.qurt.CurtException;
 import com.emc.qurt.StatesConsts;
 import com.emc.qurt.domain.SystemSettings;
 import com.emc.qurt.repository.SystemConnectionInfoRepository;
-import com.emc.fapi.jaxws.*;
+import com.emc.fapi.jaxws.v4_3.*;
 import retrofit.RetrofitError;
 
 import java.util.HashMap;
@@ -17,7 +17,7 @@ import java.util.Map;
 public class Client {
     private SystemConnectionInfoRepository systemsRepo = null;
     private SystemSettings systemSettings;
-    private Cluster41Connector connector;
+    private Cluster43Connector connector;
 
     public Client(SystemSettings settings) {
         this.systemSettings = settings;

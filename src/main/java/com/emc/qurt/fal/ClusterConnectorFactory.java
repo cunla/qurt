@@ -20,7 +20,7 @@ public class ClusterConnectorFactory {
         disableSslVerification();
     }
 
-    public static Cluster41Connector getConnector(SystemSettings settings) {
+    public static Cluster43Connector getConnector(SystemSettings settings) {
         RestAdapter restAdapter = new RestAdapter.Builder()
 //                .setLogLevel(RestAdapter.LogLevel.FULL)
                 .setEndpoint("https://" + settings.getSystemIp() + ":" + port + "/")
@@ -28,7 +28,7 @@ public class ClusterConnectorFactory {
                 .setRequestInterceptor(buildInterceptor(settings))
                 .build();
 
-        Cluster41Connector service = restAdapter.create(Cluster41Connector.class);
+        Cluster43Connector service = restAdapter.create(Cluster43Connector.class);
         return service;
     }
 

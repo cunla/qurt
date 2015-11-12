@@ -22,7 +22,7 @@ import java.util.List;
 public class SamplingTask {
     public final static String EVERY_MINUTE = "1 * * * * *";
     public final static String EVERY_DAY = "0 15 * * * * ";
-    public final static String SCHEDULE = EVERY_DAY;
+    public final static String SCHEDULE = EVERY_MINUTE;
 
     private final Logger log = LoggerFactory.getLogger(SamplingTask.class);
 

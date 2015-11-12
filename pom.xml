@@ -38,8 +38,6 @@
             <artifactId>retrofit</artifactId>
             <version>${retrofit.version}</version>
         </dependency>
-
-
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -112,6 +110,11 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-envers</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.emc</groupId>
+            <artifactId>fapi-client</artifactId>
+            <version>4.3</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
