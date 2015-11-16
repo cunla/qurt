@@ -10,9 +10,12 @@ QURT provides an easy way to monitor the usage of one or more RecoverPoint for V
 ###OVERVIEW
 The QURT quarterly reports displays average number of VMs per month for the quarter.
 
-* The report includes both source and replica VMs
-* The monthly value is based the average of weekly sample values captured each Friday at noon
-* The report also indicates the country / region for which the invoice should be prepared
+* The monthly value is based the average of weekly sample values captured each Friday at noon.
+ * Samples are collected periodically (configurable; default = once an day).
+ * If a sample cannot be taken on Friday at noon, then the sample taken at the time, during that week, closest to that time will be used as the indicative sample.
+ * If no samples were taken in a given week, then that week will not be included in the calculation of the monthly average.
+ * The average is an arithmetic average, calculated by summing the number of replicated VMs each week (as reported on Friday at noon, or the closest date) divided by the number of weeks for which samples were taken in that month.
+
  
 
 QURT is deployed as a standalone jar running as a windows service. A standalone web-container periodically collects VM data from RecoverPoint for VMs systems and exposes REST services and an AngularJS client.
