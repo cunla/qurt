@@ -16,7 +16,7 @@ The QURT quarterly reports displays average number of VMs per month for the quar
  * If no samples were taken in a given week, then that week will not be included in the calculation of the monthly average.
  * The average is an arithmetic average, calculated by summing the number of replicated VMs each week (as reported on Friday at noon, or the closest date) divided by the number of weeks for which samples were taken in that month.
 
- 
+
 
 QURT is deployed as a standalone jar running as a windows service. A standalone web-container periodically collects VM data from RecoverPoint for VMs systems and exposes REST services and an AngularJS client.
 
@@ -34,12 +34,15 @@ QURT is deployed as a standalone jar running as a windows service. A standalone 
 ####Compile and deploy
 * You can download the source code from here
 * Add the RP4VM client jar to your maven repository using: `mvn install:install-file -Dfile=fapi-client-4.3.jar -DgroupId=com.emc -DartifactId=fapi-client -Dversion=4.3 -Dpackaging=jar`
+* Change the encryption keys in the class `com.emc.qurt.domain.SystemSettings` before compiling
 * Set database assosiation:
     QURT comes out of the box using H2 embedded file system database so it does not require any settings changed.
     However, if you like to work with other database, you can change the configuration under src/main/resources/config/application.yml
     You can see example of MySQL connection under src/main/resources/config/application-dev.yml.
     Notice the drivers that are bundled are for mysql and H2 - add to pom.xml drivers if needed.
 * Compile using 'mvn package'
+
+####Running
 * Run with the relevant profile (prod relates to `application.yml` while dev profile relates to `application-dev.yml`)
 `java -jar qurt.war --spring.profiles.active=prod`
 
@@ -66,11 +69,11 @@ To access QURT either AngularJS client or the REST API can be used
 The QURT Web client can be accessed in: http://<hostname>:8080/index.html  (8080 is the default port)
 Basic user/password authentication is required. The defaults are:
  - User: user
- - Password:qurt123 
+ - Password:qurt123
 
 The password can be changed by:
  - Changing WebSecurityConfig class
- - Write the password encoded in base64 in file curtpassword 
+ - Write the password encoded in base64 in file curtpassword
 
  QURT UI provides the following functionality:
  1. QURT Configuration – Define RP systems to collect data from
@@ -79,7 +82,7 @@ The password can be changed by:
 	 - Update settings (i.e., change RP user/password)
  2. Generate report of #VMs per month per country
      - Select report quarter (past or current)
- 
+
 ####QURT REST API
 The following methods are supported in the QURT RESP API
  - `GET http://{server:port}/report/quarterReport/{year}/{quarter}` – Generates quarterly report for a specific quarter
