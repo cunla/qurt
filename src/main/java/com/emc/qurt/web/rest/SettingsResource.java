@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -29,18 +30,12 @@ public class SettingsResource {
     @Inject
     private SystemConnectionInfoRepository systemConnectionInfoRepository;
 
-    @RequestMapping(value = "/rest/testSystem/{id}",
-                    method = RequestMethod.GET,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<SystemSettings>> testSystem(@PathVariable("id") Long id) {
+       @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value = "/rest/systems/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<SystemSettings> findSystem(@PathVariable("id") Long id) {
         log.debug("Testing systemSettings with id {}", id);
         SystemSettings systemSettings = systemConnectionInfoRepository.findOne(id);
-        Client client = new Client(systemSettings);
-        client.getSystemTime();
-        systemConnectionInfoRepository.saveAndFlush(systemSettings);
-        return Optional.ofNullable(systemConnectionInfoRepository.findAll()).map(
-                clusterSettings -> new ResponseEntity<>(clusterSettings, HttpStatus.OK)).orElse(
-                new ResponseEntity<>(HttpStatus.NOT_FOUND));
+        return new ResponseEntity<>(systemSettings, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/rest/addSystem",

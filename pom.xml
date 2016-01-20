@@ -58,11 +58,15 @@
         <dependency>
             <groupId>com.emc</groupId>
             <artifactId>fapi-client</artifactId>
-            <version>4.3</version>
+            <version>4.3.1</version>
             <!--<scope>system</scope>-->
             <!--<systemPath>${project.basedir}/fapi_client_4_1-1.0.jar</systemPath>-->
         </dependency>
-
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
         <dependency>
             <groupId>io.dropwizard.metrics</groupId>
             <artifactId>metrics-ehcache</artifactId>
@@ -110,11 +114,6 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-envers</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.emc</groupId>
-            <artifactId>fapi-client</artifactId>
-            <version>4.3</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>

@@ -1,7 +1,6 @@
 package com.emc.qurt.fal;
 
 
-import com.emc.fapi.jaxws.v4_3.FullRecoverPointSettings;
 import com.emc.qurt.domain.SystemSettings;
 import org.joda.time.DateTime;
 import org.junit.Test;
@@ -10,7 +9,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import com.emc.fapi.jaxws.v4_3.*;
+import com.emc.fapi.jaxws.v4_3_1.*;
 /**
  * Created by morand3 on 1/13/2015.
  */
