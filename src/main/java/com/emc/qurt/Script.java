@@ -53,9 +53,9 @@ public class Script {
         Client client = new Client(systemSettings);
         Sampler sampler = new Sampler(client);
         List<VirtualMachineData> res = sampler.getAllVms();
-
+        System.out.println(VirtualMachineData.simpleCsvTitle());
         for (VirtualMachineData vm : res) {
-            System.out.println(vm.asCsv());
+            System.out.println(vm.asSimpleCsv());
         }
 
     }

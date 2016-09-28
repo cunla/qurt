@@ -61,6 +61,14 @@ public class VirtualMachineData {
         this.clusterCountry = clusterCountry;
     }
 
+    public static String csvTitle() {
+        return "id,sampleTime,vmId,vmName,clusterId,clusterName,clusterCountry,state,localMachine";
+    }
+
+    public static String simpleCsvTitle() {
+        return "vmId,vmName,clusterId,clusterName,role";
+    }
+
     public Long getId() {
         return id;
     }
@@ -144,6 +152,17 @@ public class VirtualMachineData {
                 role;
     }
 
+    public String asSimpleCsv() {
+        return
+//                id + "," +
+//                sampleTime + "," +
+                vmId + "," +
+                        vmName + "," +
+                        clusterId + "," +
+                        clusterName + "," +
+                        role;
+    }
+
     @Override
     public String toString() {
         return "VirtualMachineData{" +
@@ -156,9 +175,5 @@ public class VirtualMachineData {
                 ", clusterCountry='" + clusterCountry + '\'' +
                 ", role='" + role + '\'' +
                 '}';
-    }
-
-    public static String csvTitle() {
-        return "id,sampleTime,vmId,vmName,clusterId,clusterName,clusterCountry,state,localMachine";
     }
 }

@@ -52,12 +52,13 @@ public class Sampler {
             for (String vmId : vms.keySet()) {
                 String role = vmState.get(vmId);
                 if (null == role) {
-                    log.info("vm {}({}) doesn't have a state... vRPA?", vmId, vms.get(vmId));
-                } else {
-                    VirtualMachineData vmData = new VirtualMachineData(sampleTime, clusterId,
-                            clustersNames.get(clusterId), vmId, vms.get(vmId), clusterCountry, role);
-                    res.add(vmData);
+//                    log.info("vm {}({}) doesn't have a state... vRPA?", vmId, vms.get(vmId));
+                    role = "NONE";
                 }
+                VirtualMachineData vmData = new VirtualMachineData(sampleTime, clusterId,
+                        clustersNames.get(clusterId), vmId, vms.get(vmId), clusterCountry, role);
+                res.add(vmData);
+
             }
         }
         return res;
