@@ -1,6 +1,5 @@
 package com.emc.qurt.sampling;
 
-import com.emc.qurt.CurtException;
 import com.emc.qurt.domain.SystemSettings;
 import com.emc.qurt.domain.VirtualMachineData;
 import com.emc.qurt.fal.Client;
@@ -9,6 +8,7 @@ import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +20,11 @@ public class Sampler {
     private final Logger log = LoggerFactory.getLogger(Sampler.class);
     private final Client falClient;
     private final SystemConnectionInfoRepository systemsRepository;
+
+    public Sampler(Client falClient) {
+        this.falClient = falClient;
+        this.systemsRepository = null;
+    }
 
     public Sampler(Client falClient, SystemConnectionInfoRepository systemsRepository) {
         this.falClient = falClient;
@@ -39,15 +44,15 @@ public class Sampler {
 
         List<VirtualMachineData> res = new LinkedList<>();
         for (Long clusterId : clustersNames.keySet()) {
-            String clusterCountry = systemsRepository.clusterCountry(clusterId);
+            String clusterCountry = systemsRepository == null ? "null" : systemsRepository.clusterCountry(clusterId);
             Map<String, String> vms = vmNames.get(clusterId);
             if (null == vms) {
-                throw new CurtException("VMs list is empty for" + clusterId);
+                return Collections.emptyList();
             }
             for (String vmId : vms.keySet()) {
                 String role = vmState.get(vmId);
                 if (null == role) {
-                    log.warn("vm {} doesn't have a state... maybe vRPA? {}", vmId, vms.get(vmId));
+                    log.info("vm {}({}) doesn't have a state... vRPA?", vmId, vms.get(vmId));
                 } else {
                     VirtualMachineData vmData = new VirtualMachineData(sampleTime, clusterId,
                             clustersNames.get(clusterId), vmId, vms.get(vmId), clusterCountry, role);

@@ -4,7 +4,7 @@ import com.emc.qurt.CurtException;
 import com.emc.qurt.StatesConsts;
 import com.emc.qurt.domain.SystemSettings;
 import com.emc.qurt.repository.SystemConnectionInfoRepository;
-import com.emc.fapi.jaxws.v4_3_1.*;
+import com.emc.fapi.jaxws.v4_3.*;
 import retrofit.RetrofitError;
 
 import java.util.HashMap;

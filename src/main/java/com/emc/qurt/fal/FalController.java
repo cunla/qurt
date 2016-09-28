@@ -1,7 +1,6 @@
 package com.emc.qurt.fal;
 
-//import com.emc.fapi.jaxws.v4_3.FullRecoverPointSettings;
-import com.emc.fapi.jaxws.v4_3_1.FullRecoverPointSettings;
+import com.emc.fapi.jaxws.v4_3.FullRecoverPointSettings;
 import com.emc.qurt.domain.SystemSettings;
 import com.emc.qurt.repository.SystemConnectionInfoRepository;
 import org.slf4j.Logger;

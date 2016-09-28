@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import com.emc.fapi.jaxws.v4_3_1.*;
+import com.emc.fapi.jaxws.v4_3.*;
 /**
  * Created by morand3 on 1/13/2015.
  */

@@ -1,6 +1,6 @@
 package com.emc.qurt.fal;
 
-import com.emc.fapi.jaxws.v4_3_1.*;
+import com.emc.fapi.jaxws.v4_3.*;
 import retrofit.http.GET;
 import retrofit.http.Path;
 
